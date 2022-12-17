@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                                        onTap: (){
                                          //update vote
                                          if (voters.isEmpty) {
-                                           log("No vote");
+                                           log("No votee");
                                            vote.votePoll(
                                                pollId: data.id,
                                                pollData: data,
