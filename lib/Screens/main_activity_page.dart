@@ -30,13 +30,12 @@ class _MainActivityPageState extends State<MainActivityPage> {
       );
     });
   }
-  List<Widget> _pages = [HomePage(), MyPolls(),
-    //AccountPage()
+  List<Widget> _pages = [HomePage(), MyPolls(), AccountPage()
   ];
 
   List<BottomNavigationBarItem> _items = const [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
     BottomNavigationBarItem(icon: Icon(Icons.poll), label: "My Polls"),
-   // BottomNavigationBarItem(icon: Icon(Icons.person), label: "Accounts"),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Accounts"),
   ];
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'Providers/authentication_provider.dart';
 import 'Providers/bottom_nav_provider.dart';
 import 'Providers/db_provider.dart';
+import 'Providers/fetch_polls_provider.dart';
 import 'Screens/splash_screen.dart';
 import 'firebase_options.dart';
 
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => BottomNavProvider()),
         ChangeNotifierProvider(create: (context) => DbProvider()),
-        // ChangeNotifierProvider(create: (context) => FetchPollsProvider()),
+        ChangeNotifierProvider(create: (context) => FetchPollsProvider()),
       ],
       child: const MaterialApp(
         home: SplashScreen(),
