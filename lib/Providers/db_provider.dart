@@ -6,11 +6,11 @@ class DbProvider extends ChangeNotifier {
   String _message = "";
 
   bool _status = false;
- // bool _deleteStatus = false;
+  bool _deleteStatus = false;
 
   String get message => _message;
   bool get status => _status;
- // bool get deleteStatus => _deleteStatus;
+  bool get deleteStatus => _deleteStatus;
 
   User? user = FirebaseAuth.instance.currentUser;
 
@@ -90,8 +90,8 @@ class DbProvider extends ChangeNotifier {
         List voters = pollData['poll']["voters"];
 
           voters.add({
-            "name": user!.displayName,
-            "uid": user!.uid,
+            // "name": user!.displayName,
+            // "uid": user!.uid,
             "selected_option": seletedOptions,
           });
 

@@ -90,11 +90,11 @@ class _MyPolls extends State<MyPolls> {
                                         },
                                       );
                                       return IconButton(
-                                          onPressed: delete.status == true
+                                          onPressed: delete.deleteStatus == true
                                               ? null
                                               : (){
                                         delete.deletePoll(pollId: data.id);
-                                      }, icon: delete.status == true
+                                      }, icon: delete.deleteStatus == true
                                           ? const CircularProgressIndicator()
                                           :const Icon(Icons.delete));
                                     }

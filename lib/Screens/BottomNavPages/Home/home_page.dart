@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +6,6 @@ import 'package:poll_2022/Providers/db_provider.dart';
 import 'package:poll_2022/Providers/fetch_polls_provider.dart';
 import 'package:poll_2022/Styles/Colors.dart';
 import 'package:provider/provider.dart';
-
 import '../../../Utils/message.dart';
 
 class HomePage extends StatefulWidget {
@@ -97,9 +95,10 @@ class _HomePageState extends State<HomePage> {
                                          },);
                                      return GestureDetector(
                                        onTap: (){
-                                         //update vote
+                                         ///update vote
+
                                          if (voters.isEmpty) {
-                                           log("No votee");
+                                           log("No vote");
                                            vote.votePoll(
                                                pollId: data.id,
                                                pollData: data,
@@ -107,6 +106,15 @@ class _HomePageState extends State<HomePage> {
                                                poll["total_votes"],
                                                seletedOptions:
                                                dataOption["answer"]);
+                                         }else{
+                                           vote.votePoll(
+                                               pollId: data.id,
+                                               pollData: data,
+                                               previousTotalVotes:
+                                               poll["total_votes"],
+                                               seletedOptions:
+                                               dataOption["answer"]);
+                                           return;
                                          }
                                          },
                                        child: Container(
@@ -124,8 +132,7 @@ class _HomePageState extends State<HomePage> {
                                                    alignment: Alignment.centerLeft,
                                                    padding: const EdgeInsets.symmetric(horizontal: 10),
                                                    height: 30,
-                                                   child: Text(dataOption[
-                                                     "answer"]),
+                                                   child: Text(dataOption["answer"]),
                                                  ),
                                                ],
                                              ),),
