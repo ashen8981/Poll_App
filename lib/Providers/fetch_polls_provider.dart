@@ -50,7 +50,6 @@ class FetchPollsProvider extends ChangeNotifier {
         _usersPollsList = data;
         _isLoading = false;
         notifyListeners();
-
       }
     });
   }

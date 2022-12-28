@@ -17,6 +17,7 @@ void main() async {
   );
   runApp(const MyApp());
 }
+final navigatorKey = GlobalKey<NavigatorState>();///auth sign in
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -35,7 +36,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => DbProvider()),
         ChangeNotifierProvider(create: (context) => FetchPollsProvider()),
       ],
-      child: const MaterialApp(
+      child:  MaterialApp(
+        navigatorKey: navigatorKey,///login new
         home: SplashScreen(),
       ),
     );
