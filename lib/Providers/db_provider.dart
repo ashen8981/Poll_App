@@ -27,11 +27,11 @@ class DbProvider extends ChangeNotifier {
       ///
       final data = {
        // "authorId": user!.uid,
-       //  "author": {
-       //    "uid": user!.uid,
-       //    "profileImage": user!.photoURL,
-       //    "name": user!.displayName,
-       //  },
+        "author": {
+          "uid": user!.uid,
+          // "profileImage": user!.photoURL,
+          "name": user!.email,
+        },
         "dateCreated": DateTime.now(),
         "poll": {
           "total_votes": 0,
