@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:poll_2022/Providers/db_provider.dart';
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isFetched = false;
+  User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                        ...List.generate(polls.pollsList.length, (index) {
                          final data = polls.pollsList[index];
                          log(data.data().toString());
-                       //  Map author = data["author"];
+                         Map author = data["author"];
                          Map poll = data["poll"];
                          Timestamp date = data["dateCreated"];
                          List voters = poll["voters"];
@@ -63,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                                ListTile(
                                  contentPadding: const EdgeInsets.all(0),
                                  leading: const CircleAvatar(),
-                                 title: const Text("ashen malindu"),
+                                 title:    Text(author["name"]),
                                  subtitle: Text(DateFormat.yMEd().format(date.toDate())),
                                  trailing: IconButton(onPressed: (){
 
@@ -95,6 +97,7 @@ class _HomePageState extends State<HomePage> {
                                          },);
                                      return GestureDetector(
                                        onTap: (){
+                                         log(user!.uid);
                                          ///update vote
 
                                          if (voters.isEmpty) {
@@ -106,15 +109,30 @@ class _HomePageState extends State<HomePage> {
                                                poll["total_votes"],
                                                seletedOptions:
                                                dataOption["answer"]);
-                                         }else{
-                                           vote.votePoll(
-                                               pollId: data.id,
-                                               pollData: data,
-                                               previousTotalVotes:
-                                               poll["total_votes"],
-                                               seletedOptions:
-                                               dataOption["answer"]);
-                                           return;
+                                         } else {
+                                           final isExists =
+                                           voters.firstWhere(
+                                                   (element) =>
+                                               element["uid"] ==
+                                                   user!.uid,
+                                               orElse: () {});
+                                           if (isExists == null) {
+                                             log("User does not exist");
+                                             vote.votePoll(
+                                                 pollId: data.id,
+                                                 pollData: data,
+                                                 previousTotalVotes:
+                                                 poll["total_votes"],
+                                                 seletedOptions:
+                                                 dataOption[
+                                                 "answer"]);
+
+                                           } else {
+                                             error(context,
+                                                 message:
+                                                 "You have already voted");
+                                           }
+                                           print(isExists.toString());
                                          }
                                          },
                                        child: Container(

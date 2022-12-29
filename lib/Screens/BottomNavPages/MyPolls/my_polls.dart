@@ -46,10 +46,10 @@ class _MyPolls extends State<MyPolls> {
                         ...List.generate(polls.userPollsList.length, (index) {
                           final data = polls.userPollsList[index];
                           log(data.data().toString());
-                          //  Map author = data["author"];
+                          Map author = data["author"];
                           Map poll = data["poll"];
                           Timestamp date = data["dateCreated"];
-                          // List voters = poll["voters"];
+                          List voters = poll["voters"];
                           List<dynamic> options = poll["options"];
 
                           return Container(
@@ -65,7 +65,7 @@ class _MyPolls extends State<MyPolls> {
                                 ListTile(
                                   contentPadding: const EdgeInsets.all(0),
                                   leading: const CircleAvatar(),
-                                  title: const Text("ashen malindu"),
+                                  title:  Text(author["name"]),
                                   subtitle: Text(DateFormat.yMEd().format(date.toDate())),
                                   trailing: Consumer<DbProvider>(
                                     builder: (context, delete, child) {

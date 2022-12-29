@@ -90,8 +90,8 @@ class DbProvider extends ChangeNotifier {
         List voters = pollData['poll']["voters"];
 
           voters.add({
-            // "name": user!.displayName,
-            // "uid": user!.uid,
+            "name": user!.email,///=======changed
+            "uid": user!.uid,
             "selected_option": seletedOptions,
           });
 
@@ -114,11 +114,11 @@ class DbProvider extends ChangeNotifier {
               ///update poll
 
               final data = {
-                // "author": {
-                //   "uid": pollData["author"]["uid"],
-                //   "profileImage": pollData["author"]["profileImage"],
-                //   "name": pollData["author"]["name"],
-                // },
+                "author": {
+                  "uid": pollData["author"]["uid"],
+                  // "profileImage": pollData["author"]["profileImage"],
+                  "name": pollData["author"]["name"],
+                },
                 "dateCreated": pollData["dateCreated"],
                 "poll": {
                   "total_votes": previousTotalVotes + 1,
