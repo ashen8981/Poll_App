@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:poll_2022/Screens/Authentication/auth_page.dart';
-import '../../../Providers/authentication_provider.dart';
-import '../../../Styles/Colors.dart';
-import '../../../Utils/message.dart';
-import '../../../Utils/router.dart';
+import 'package:lottie/lottie.dart';
+
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -21,25 +18,10 @@ class _AccountPageState extends State<AccountPage> {
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          GestureDetector(
-        onTap: () {
-      AuthProvider().logOut().then((value) {
-        // if (value== false) {
-        //   error(context, message: "Please try again");
-        // } else {
-        // nextPageOnly(context, const AuthPage());
-        // }
-      });
-    },
-        child: Container(
-          height: 50,
-          width: 100,
-          decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(10)),
-          alignment: Alignment.center,
-          child: const Text("Logout"),
-        ),),
+              Lottie.network('https://assets2.lottiefiles.com/packages/lf20_vmlm0zew.json',
+                width: 300,
+                height: 400,
+                fit: BoxFit.fill,),
           const SizedBox(height: 25),
           ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
