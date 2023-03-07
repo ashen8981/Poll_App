@@ -1,6 +1,6 @@
 # poll_2022
 
-A new Flutter project.
+A new Flutter Firebase project.
 
 ## Getting Started
 
